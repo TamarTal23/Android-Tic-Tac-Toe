@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                     if (cell is Button) {
                         cell.text = ""
                         cell.setOnClickListener {
-                            boardCellTapped(cell)
+                            boardCellPressed(cell)
                         }
 
                         boardList.add(cell)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         setBoardEnabled(true)
     }
 
-    private fun boardCellTapped(cell: Button) {
+    private fun boardCellPressed(cell: Button) {
         if (cell.text != "") {
             return
         }
