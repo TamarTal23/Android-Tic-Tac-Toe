@@ -78,12 +78,19 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setBoardEnabled(enabled: Boolean) {
+    private fun setBoardEnabled(enabled: Boolean) { // TODO disable board when game is over
         for (button in boardList) {
             button.isEnabled = enabled
         }
     }
 
+    private fun isBoardFull(): Boolean { // TODO check when game is a draw
+        for (button in boardList) {
+            if (button.text == "") {
+                return false
+            }
+        }
 
-
+        return true
+    }
 }
