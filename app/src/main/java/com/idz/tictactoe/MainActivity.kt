@@ -62,6 +62,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun boardCellTapped(cell: Button) {
+        if (cell.text != "") {
+            return
+        }
+
+        if (currentPlayer == Player.X) {
+            cell.text = "X"
+            cell.setTextColor(resources.getColor(android.R.color.holo_red_dark, null))
+            currentPlayer = Player.O
+        } else {
+            cell.text = "O"
+            cell.setTextColor(resources.getColor(android.R.color.holo_blue_dark, null))
+            currentPlayer = Player.X
+        }
 
     }
 
