@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         resetBoard()
-
+        updateTurnMessage()
     }
 
     private fun resetBoard() {
@@ -57,8 +57,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        setBoardEnabled(true)
     }
 
     private fun boardCellPressed(cell: Button) {
@@ -75,13 +73,11 @@ class MainActivity : AppCompatActivity() {
             cell.setTextColor(resources.getColor(android.R.color.holo_blue_dark, null))
             currentPlayer = Player.X
         }
-
+            updateTurnMessage()
     }
 
-    private fun setBoardEnabled(enabled: Boolean) { // TODO disable board when game is over
-        for (button in boardList) {
-            button.isEnabled = enabled
-        }
+    private fun updateTurnMessage() {
+        binding?.gameProgressTextView?.text = getString(R.string.player_turn, currentPlayer)
     }
 
     private fun isBoardFull(): Boolean { // TODO check when game is a draw
