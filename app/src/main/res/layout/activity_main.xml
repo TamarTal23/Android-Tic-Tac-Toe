@@ -12,7 +12,6 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:text="Tic Tac Toe"
         android:textSize="48sp"
@@ -20,20 +19,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/boardLayout"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <LinearLayout
         android:id="@+id/boardLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="68dp"
         android:orientation="vertical"
         android:padding="20dp"
-        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        app:layout_constraintBottom_toTopOf="@id/gameProgressTextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleTextView">
+        app:layout_constraintDimensionRatio="1:1">
 
         <LinearLayout style="@style/row">
 
@@ -87,5 +86,28 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/gameProgressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/boardLayout"
+        app:layout_constraintBottom_toTopOf="@id/playAgainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/playAgainButton"
+        style="@style/playAgainButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_again"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/gameProgressTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

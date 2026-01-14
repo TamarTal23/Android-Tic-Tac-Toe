@@ -36,7 +36,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         resetBoard()
+        updateTurnMessage()
 
+        binding?.playAgainButton?.setOnClickListener {
+            resetBoard()
+            binding?.playAgainButton?.visibility = View.INVISIBLE
+            currentPlayer = Player.X
+            updateTurnMessage()
+        }
     }
 
     private fun resetBoard() {
@@ -76,15 +83,59 @@ class MainActivity : AppCompatActivity() {
             currentPlayer = Player.X
         }
 
+        val winner = checkWinner()
+        if (winner != null) {
+            binding?.gameProgressTextView?.text = getString(R.string.player_wins, winner)
+            binding?.playAgainButton?.visibility = View.VISIBLE
+            setBoardEnabled(false)
+        } else if (isBoardFull()) {
+            binding?.gameProgressTextView?.text = getString(R.string.draw)
+            binding?.playAgainButton?.visibility = View.VISIBLE
+        } else {
+            updateTurnMessage()
+        }
     }
 
-    private fun setBoardEnabled(enabled: Boolean) { // TODO disable board when game is over
+    private fun updateTurnMessage() {
+        binding?.gameProgressTextView?.text = getString(R.string.player_turn, currentPlayer)
+    }
+
+    private fun setBoardEnabled(enabled: Boolean) {
         for (button in boardList) {
             button.isEnabled = enabled
         }
     }
 
-    private fun isBoardFull(): Boolean { // TODO check when game is a draw
+    private fun checkWinner(): String? {
+        val board = Array(3) { Array(3) { "" } }
+        for (i in 0..2) {
+            for (j in 0..2) {
+                board[i][j] = boardList[i * 3 + j].text.toString()
+            }
+        }
+
+        for (i in 0..2) {
+            if (board[i][0] != "" && board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+                return board[i][0]
+            }
+
+            if (board[0][i] != "" && board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
+                return board[0][i]
+            }
+        }
+
+        if (board[0][0] != "" && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            return board[0][0]
+        }
+
+        if (board[0][2] != "" && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            return board[0][2]
+        }
+
+        return null
+    }
+
+    private fun isBoardFull(): Boolean {
         for (button in boardList) {
             if (button.text == "") {
                 return false
