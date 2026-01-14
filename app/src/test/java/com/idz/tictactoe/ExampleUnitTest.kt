@@ -1,4 +1,4 @@
-package com.idz.androidtictactoe
+package com.idz.tictactoe
 
 import org.junit.Test
 
