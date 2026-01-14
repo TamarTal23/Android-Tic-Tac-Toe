@@ -37,6 +37,13 @@ class MainActivity : AppCompatActivity() {
 
         resetBoard()
         updateTurnMessage()
+
+        binding?.playAgainButton?.setOnClickListener {
+            resetBoard()
+            binding?.playAgainButton?.visibility = View.INVISIBLE
+            currentPlayer = Player.X
+            updateTurnMessage()
+        }
     }
 
     private fun resetBoard() {
@@ -73,7 +80,13 @@ class MainActivity : AppCompatActivity() {
             cell.setTextColor(resources.getColor(android.R.color.holo_blue_dark, null))
             currentPlayer = Player.X
         }
+
+        if (isBoardFull()) {
+            binding?.gameProgressTextView?.text = getString(R.string.draw)
+            binding?.playAgainButton?.visibility = View.VISIBLE
+        } else {
             updateTurnMessage()
+        }
     }
 
     private fun updateTurnMessage() {

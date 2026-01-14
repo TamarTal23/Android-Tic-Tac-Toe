@@ -94,6 +94,19 @@
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/boardLayout"
+        app:layout_constraintBottom_toTopOf="@id/playAgainButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/playAgainButton"
+        style="@style/playAgainButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/play_again"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/gameProgressTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
